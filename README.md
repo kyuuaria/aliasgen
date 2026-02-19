@@ -17,7 +17,9 @@ The suffix depends on the selected mode:
 - **Random characters** - configurable length (3-12 chars), e.g. `github.x9f2k@example.com`
 - **Random words** - 1-3 words (adjective, or adjectives + noun), e.g. `github.swift@example.com` or `github.bright-falcon@example.com`
 
-Configuration is stored in the URL hash so you can bookmark different setups. Hash fragments are never sent to the server, so your domain stays client-side.
+Configuration is saved to both the URL hash fragment and localStorage. On load, the hash takes priority - if empty (e.g. when opened as a PWA), localStorage is used. Either way, invalid or missing fields fall back to sensible defaults.
+
+> The hash fragment is base64-encoded and never sent to the server, so your config stays client-side.
 
 ## Features
 
@@ -25,7 +27,7 @@ Configuration is stored in the URL hash so you can bookmark different setups. Ha
 - Debounced domain validation
 - Copy on click or Enter, auto-clears for the next alias
 - Lazy-loaded Three.js shader background
-- Installable PWA
+- Installable PWA with persistent configuration
 
 ## Stack
 

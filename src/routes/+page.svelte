@@ -11,17 +11,17 @@
 
   import AliasSettings from '@/components/alias-settings.svelte';
   import { type Config, configSchema, DEFAULTS, serviceSchema } from '@/config';
-  import { deserializeConfig, serializeConfig } from '@/hash';
+  import { loadConfig, saveConfig } from '@/persist';
   import { generateAlphaSuffix, generateWordSuffix } from '@/suffix';
   import { slideDown } from '@/transitions';
 
   // --- Config state ---
 
-  const initialConfig = deserializeConfig(page.url.hash);
+  const initialConfig = loadConfig(page.url.hash);
   let config = $state<Config>(initialConfig);
 
   $effect(() => {
-    location.hash = serializeConfig(config);
+    location.hash = saveConfig(config);
   });
 
   // --- Domain (debounced) ---
